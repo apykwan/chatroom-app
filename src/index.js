@@ -13,7 +13,7 @@ const io = socketio(server);
 
 const port = process.env.PORT || 3000;
 
-const publicDirectoryPath = path.join(__dirname, '../public/');
+const publicDirectoryPath = path.join(__dirname, '../public');
 /* Use middleware to setup static directory to serve */
 app.use(express.static(publicDirectoryPath));
 
