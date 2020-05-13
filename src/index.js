@@ -49,13 +49,12 @@ io.on('connection', socket => {
     // client (emit) -> server (recieve) - client's posting
     socket.on('sendMessage', (message, callback) => {
         const filter = new Filter();
-
+        const user = getUser(socket.id);
+        
         if (filter.isProfane(message)) {
+            socket.emit('message', generateMessage(user.username, 'Profanity is not allowed!!'));
             return callback('Profanity is not allowed!!');
         };
-
-        const user = getUser(socket.id);
-        console.log(user.room);
        
         // server (emit) -> client (recieve) - send the posting message to every client
         io.to(user.room).emit('message', generateMessage(user.username, message));

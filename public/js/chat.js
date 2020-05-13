@@ -79,9 +79,6 @@ $messageForm.addEventListener('submit', e => {
 
     // Accessing the input value by input's name, which in this case is "message"
     const message = e.target.elements.message.value;
-    if (message.length === 0) {
-        return console.log('enter your message!');
-    };
     socket.emit('sendMessage', message, error => {
         // enable
         $messageFormButton.removeAttribute('disabled');
@@ -93,7 +90,6 @@ $messageForm.addEventListener('submit', e => {
     });
 });
 
-const options = { enableHighAccuracy: true };
 let hasClicked = false;
 
 $sendLocationButton.addEventListener('click', () => {
